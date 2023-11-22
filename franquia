@@ -1,0 +1,121 @@
+package Entidades;
+import java.util.*;
+
+public class Franquia {
+	private String nome;
+	private String cidade;
+	private int quantTorcedores;
+	private double saldo;
+	private int vitorias;
+	private int derrotas;
+	ArrayList<Jogador> jogadores;
+	
+	
+	public Franquia(String n,String c,  int qT, double saldo, int v, int d) {
+		this.nome = n;
+		cidade = c;
+		this.quantTorcedores = qT;
+		this.saldo = saldo;
+		
+		if(v >= 0 && d >= 0 ) {
+			vitorias = v;
+			derrotas = d;
+		}else {
+			vitorias = 0;
+			derrotas = 0;
+		}
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public int getQuantTorcedores() {
+		return quantTorcedores;
+	}
+
+	public void setQuantTorcedores(int quantTorcedores) {
+		this.quantTorcedores = quantTorcedores;
+	}
+
+	public double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+
+	public int getVitorias() {
+		return vitorias;
+	}
+
+	public void setVitorias(int vitorias) {
+		this.vitorias = vitorias;
+	}
+
+	public int getDerrotas() {
+		return derrotas;
+	}
+	
+	public Franquia getFranquia() {
+	    return this;
+	}
+
+	public void setDerrotas(int derrotas) {
+		this.derrotas = derrotas;
+	}
+
+	public ArrayList<Jogador> getJogadores() {
+		return jogadores;
+	}
+
+	public void setJogadores(ArrayList<Jogador> jogadores) {
+		this.jogadores = jogadores;
+	}
+	
+	public void adicionaJogador(Jogador jogador) {
+	    if (this.jogadores == null) {
+	        this.jogadores = new ArrayList<>();
+	    }
+	    this.jogadores.add(jogador);
+	}
+	
+	
+	public void pesquisaJogador(String jogadorDesejado) {
+	    if (jogadores == null || jogadores.isEmpty()) {
+	        System.out.println("A lista de jogadores está vazia.");
+	        return;
+	    }
+
+	    for (int i = 0; i < jogadores.size(); i++) {
+	        Jogador franquiaDoJogador = jogadores.get(i);
+	        String nomeJogador = franquiaDoJogador.getNome();
+	        
+	        if (franquiaDoJogador != null && franquiaDoJogador.getNome().equals(jogadorDesejado)) {
+	            System.out.println("Jogador encontrado na franquia: " + franquiaDoJogador.getFranquiaPertecente());
+	            return; 
+	        }
+	    }
+	    System.out.println("Nenhum jogador encontrado com esse nome");
+	}
+	
+	public ArrayList<String> listaJogadores(String timeDesejado) {
+	    ArrayList<String> listagem = new ArrayList<String>();
+
+	    for (int i = 0; i < jogadores.size(); i++) {
+	        Jogador jogador = jogadores.get(i);
+	        
+	        if (jogador.getFranquiaPertecente().equals(timeDesejado)) {
+	            String addNome = jogador.getNome();
+	            listagem.add(addNome);
+	        }
+	    }
+	    return listagem;
+	}
+
+}
