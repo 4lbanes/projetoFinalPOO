@@ -1,0 +1,45 @@
+import java.util.*;
+import Entidades.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		TemporadaRegular tr1 = new TemporadaRegular();
+		Franquia generica = new Franquia(null, null, 0, 0, 0, 0);
+
+		Franquia f1 = new Franquia("Clippers", "Los Angeles", 80000, 5000000, 70, 12);
+		Franquia f2 = new Franquia("Lakers", "Los Angeles", 200000, 5000000, 68, 14);
+		Franquia f3 = new Franquia("Nuggets", "Denver", 200000, 5000000, 81, 1);
+		Franquia f4 = new Franquia("Celtics", "Boston", 200000, 5000000, 79, 1);
+
+		tr1.adicionaFranquia(f1);
+		tr1.adicionaFranquia(f2);
+		tr1.adicionaFranquia(f3);
+		tr1.adicionaFranquia(f4);
+
+		Jogador j1 = new Jogador("LeBron", "Estados Unidos", "Lakers", 10, 30, 10, 5, 2, 36, false);
+		Jogador j2 = new Jogador("Giannis", "Grécia", "Bucks", 15, 28, 5, 3, 1, 27, false);
+		Jogador j3 = new Jogador("LeBron2", "Estados Unidos", "Lakers", 10, 30, 10, 5, 2, 36, false);
+		Jogador j4 = new Jogador("Giannis2", "Grécia", "Bucks", 15, 28, 5, 3, 1, 27, false);
+
+		ArrayList<Jogador> jogadores = new ArrayList<>();
+		jogadores.add(j1);
+		jogadores.add(j2);
+		jogadores.add(j3);
+		jogadores.add(j4);
+
+		Premiacoes p1 = new Premiacoes(jogadores, tr1); 
+
+		generica.adicionaJogador(j1);
+		generica.adicionaJogador(j2);
+		generica.adicionaJogador(j3);
+		generica.adicionaJogador(j4);
+
+		generica.pesquisaJogador("LeBron");
+
+		System.out.println(generica.listaJogadores("Lakers"));
+		System.out.println(generica.listaJogadores("Bucks"));
+		
+		generica.pesquisaJogador("Giannis2");
+	}
+}
