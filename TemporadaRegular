@@ -1,0 +1,40 @@
+package Entidades;
+import java.util.*;
+
+public class TemporadaRegular {
+	ArrayList<Franquia> franquias;
+
+	public TemporadaRegular() {
+        franquias = new ArrayList<>();
+    }
+	
+	public void adicionaFranquia(Franquia franquiaAdicionada) {
+		franquias.add(franquiaAdicionada);
+	}
+
+	public void classificacao() {
+		for (int i = 0; i < franquias.size() - 1; i++) {
+			for (int j = i + 1; j < franquias.size(); j++) {
+				Franquia franquiaI = franquias.get(i);
+				Franquia franquiaJ = franquias.get(j);
+
+				if (franquiaJ.getVitorias() > franquiaI.getVitorias() || franquiaJ.getDerrotas() < franquiaI.getDerrotas()) {
+					Franquia temp = franquiaI;
+					franquias.set(i, franquiaJ);
+					franquias.set(j, temp);
+				}
+			}
+		}
+	}
+	
+	public void mostraClassificacao() {
+		classificacao();
+        System.out.println("Classificação:");
+        for (int i = 0; i < franquias.size(); i++) {
+            Franquia franquia = franquias.get(i);
+            System.out.println((i + 1) + ". " + franquia.getNome() + " - Vitórias: " + franquia.getVitorias() + "- Derrotas: " + franquia.getDerrotas());
+        }
+    }
+}
+
+
