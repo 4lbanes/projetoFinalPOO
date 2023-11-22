@@ -1,0 +1,118 @@
+package Entidades;
+import java.util.*;
+
+public class Jogador {
+	private String nome;//1
+	private String nacionalidade;//2
+	private String franquiaPertecente;//3
+	private double mediaRebotes;//4
+	private double mediaPontos;//5
+	private double mediaAssistencias;//6
+	private double mediaTocos;//7
+	private double mediaRoubos;//8
+	private int idade;//9
+	private boolean lesionado;//10
+	
+	public Jogador(String n, String na,String fP, double mR, double mP,double mT, double mA, double mR2, int i, boolean l) {
+		this.nome = n;
+		this.nacionalidade = na;
+		this.franquiaPertecente = fP;
+		this.mediaRebotes = mR;
+		this.mediaPontos = mP;
+		this.mediaAssistencias = mA;
+		this.mediaRoubos = mR2;
+		this.idade = i;
+		this.lesionado = l;
+	}
+	
+
+	public double getMediaRoubos() {
+		return mediaRoubos;
+	}
+
+	public void setMediaRoubos(double mediaRoubos) {
+		this.mediaRoubos = mediaRoubos;
+	}
+
+	public double getMediaTocos() {
+		return mediaTocos;
+	}
+
+	public void setMediaTocos(double mediaTocos) {
+		this.mediaTocos = mediaTocos;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getNacionalidade() {
+		return nacionalidade;
+	}
+
+	public void setNacionalidade(String nacionalidade) {
+		this.nacionalidade = nacionalidade;
+	}
+
+	public double getMediaRebotes() {
+		return mediaRebotes;
+	}
+
+	public void setMediaRebotes(double mediaRebotes) {
+		this.mediaRebotes = mediaRebotes;
+	}
+
+	public double getMediaPontos() {
+		return mediaPontos;
+	}
+
+	public void setMediaPontos(double mediaPontos) {
+		this.mediaPontos = mediaPontos;
+	}
+
+	public double getMediaAssistencias() {
+		return mediaAssistencias;
+	}
+
+	public void setMediaAssistencias(double mediaAssistencias) {
+		this.mediaAssistencias = mediaAssistencias;
+	}
+
+	public int getIdade() {
+		return idade;
+	}
+
+	public void setIdade(int idade) {
+		this.idade = idade;
+	}
+
+	public boolean isLesionado() {
+		return lesionado;
+	}
+
+	public void setLesionado(boolean lesionado) {
+		this.lesionado = lesionado;
+	}
+	
+	public void aposentar(ArrayList<Jogador> jogadores, Jogador jogadorAposentar) {
+		
+        if (jogadores.contains(jogadorAposentar)) {
+            jogadores.remove(jogadorAposentar);
+            System.out.println("Jogador aposentado!");
+        } else {
+            System.out.println("Jogador não encontrado na lista.");
+        }
+    }
+
+	public String getFranquiaPertecente() {
+		return franquiaPertecente;
+	}
+
+	public void setFranquiaPertecente(String franquiaPertecente) {
+		this.franquiaPertecente = franquiaPertecente;
+	}	
+}
