@@ -2,29 +2,35 @@ package Entidades;
 import java.util.*;
 
 public class Jogador {
-	private String nome;//1
-	private String nacionalidade;//2
-	private String franquiaPertecente;//3
-	private double mediaRebotes;//4
-	private double mediaPontos;//5
-	private double mediaAssistencias;//6
-	private double mediaTocos;//7
-	private double mediaRoubos;//8
-	private int idade;//9
-	private boolean lesionado;//10
-	
-	public Jogador(String n, String na,String fP, double mR, double mP,double mT, double mA, double mR2, int i, boolean l) {
-		this.nome = n;
-		this.nacionalidade = na;
-		this.franquiaPertecente = fP;
-		this.mediaRebotes = mR;
-		this.mediaPontos = mP;
-		this.mediaAssistencias = mA;
-		this.mediaRoubos = mR2;
-		this.idade = i;
-		this.lesionado = l;
+	private String nome;//0
+	private String nacionalidade;//1
+	private String franquiaPertecente;//2
+	private double mediaRebotes;//3
+	private double mediaPontos;//4
+	private double mediaAssistencias;//5
+	private double mediaTocos;//6
+	private double mediaRoubos;//7
+	private int idade;//8
+	private boolean lesionado;//9
+	private double salario;
+	private String posicao;
+
+	public Jogador(String nome, String nacionalidade, String franquiaPertecente, double mediaRebotes,
+			double mediaPontos, double mediaAssistencias, double mediaTocos, double mediaRoubos, int idade,
+			boolean lesionado, double salario, String posicao) {
+		this.nome = nome;
+		this.nacionalidade = nacionalidade;
+		this.franquiaPertecente = franquiaPertecente;
+		this.mediaRebotes = mediaRebotes;
+		this.mediaPontos = mediaPontos;
+		this.mediaAssistencias = mediaAssistencias;
+		this.mediaTocos = mediaTocos;
+		this.mediaRoubos = mediaRoubos;
+		this.idade = idade;
+		this.lesionado = lesionado;
+		this.salario = salario;
+		this.posicao = posicao;
 	}
-	
 
 	public double getMediaRoubos() {
 		return mediaRoubos;
@@ -97,16 +103,22 @@ public class Jogador {
 	public void setLesionado(boolean lesionado) {
 		this.lesionado = lesionado;
 	}
+
+	public void setSalario(double salario) {
+		this.salario = salario;
+	}
 	
-	public void aposentar(ArrayList<Jogador> jogadores, Jogador jogadorAposentar) {
-		
-        if (jogadores.contains(jogadorAposentar)) {
-            jogadores.remove(jogadorAposentar);
-            System.out.println("Jogador aposentado!");
-        } else {
-            System.out.println("Jogador não encontrado na lista.");
-        }
-    }
+	public double getSalario(){
+		return salario;
+	}
+
+	public String getPosicao() {
+		return posicao;
+	}
+
+	public void setPosicao(String posicao) {
+		this.posicao = posicao;
+	}
 
 	public String getFranquiaPertecente() {
 		return franquiaPertecente;
@@ -114,5 +126,32 @@ public class Jogador {
 
 	public void setFranquiaPertecente(String franquiaPertecente) {
 		this.franquiaPertecente = franquiaPertecente;
-	}	
+	}
+
+	public void aposentar(Jogador jogadorAposentar, ArrayList<Jogador> jogadoresListados, Premiacoes premiacoes) {
+	    if (jogadoresListados.contains(jogadorAposentar)) {
+	        jogadoresListados.remove(jogadorAposentar);
+	        System.out.println("Jogador aposentado!");
+	        premiacoes.atualizarPremiacoes();
+	    } else {
+	        System.out.println("Jogador não encontrado na lista.");
+	    }
+	}
+
+	public String calculaBonus(String jogadorEscolhido, Premiacoes premiacoes, ArrayList<Jogador> jogadores) {
+	    double calculaBonus = 0;
+	    ArrayList<Jogador> mvps = premiacoes.getMvp();
+	    ArrayList<Jogador> dpoys = premiacoes.getDpoy();
+
+	    for (Jogador jogador : jogadores) {
+	        if (jogador.getNome().equals(jogadorEscolhido)) {
+	            if (mvps.contains(jogador) || dpoys.contains(jogador)) {
+	                calculaBonus = jogador.getSalario() * 0.5;
+	            }
+	            break;
+	        }
+	    }
+
+	    return "O bônus do " + jogadorEscolhido + " ao final dessa temporada: " + calculaBonus;
+	}
 }
