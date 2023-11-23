@@ -9,21 +9,41 @@ public class Franquia {
 	private int vitorias;
 	private int derrotas;
 	ArrayList<Jogador> jogadores;
+	private String conferencia;
 	
 	
-	public Franquia(String n,String c,  int qT, double saldo, int v, int d) {
-		this.nome = n;
-		cidade = c;
-		this.quantTorcedores = qT;
+	
+	public Franquia(String nome, String cidade, int quantTorcedores, double saldo, int vitorias, int derrotas,
+			String conferencia) {
+		this.nome = nome;
+		this.cidade = cidade;
+		this.quantTorcedores = quantTorcedores;
 		this.saldo = saldo;
 		
-		if(v >= 0 && d >= 0 ) {
-			vitorias = v;
-			derrotas = d;
+		if(vitorias >= 0 && derrotas >= 0) {
+		this.vitorias = vitorias;
+		this.derrotas = derrotas;
 		}else {
 			vitorias = 0;
 			derrotas = 0;
 		}
+		this.conferencia = conferencia;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getConferencia() {
+		return conferencia;
+	}
+
+	public void setConferencia(String conferencia) {
+		this.conferencia = conferencia;
 	}
 
 	public String getNome() {
@@ -87,11 +107,6 @@ public class Franquia {
 	
 	
 	public void pesquisaJogador(String jogadorDesejado) {
-	    if (jogadores == null || jogadores.isEmpty()) {
-	        System.out.println("A lista de jogadores está vazia.");
-	        return;
-	    }
-
 	    for (int i = 0; i < jogadores.size(); i++) {
 	        Jogador franquiaDoJogador = jogadores.get(i);
 	        String nomeJogador = franquiaDoJogador.getNome();
@@ -104,7 +119,7 @@ public class Franquia {
 	    System.out.println("Nenhum jogador encontrado com esse nome");
 	}
 	
-	public ArrayList<String> listaJogadores(String timeDesejado) {
+	public String listaJogadores(String timeDesejado, ArrayList<Jogador> jogadores) {
 	    ArrayList<String> listagem = new ArrayList<String>();
 
 	    for (int i = 0; i < jogadores.size(); i++) {
@@ -115,7 +130,20 @@ public class Franquia {
 	            listagem.add(addNome);
 	        }
 	    }
-	    return listagem;
+	    return "Jogadores do " +timeDesejado +":" + listagem;
 	}
+	
+	public String listaJogadoresPosicao(String timeDesejado, ArrayList<Jogador> jogadores, String posicaoDesejada) {
+	    ArrayList<String> listagem2 = new ArrayList<String>();
 
+	    for (int i = 0; i < jogadores.size(); i++) {
+	        Jogador jogador = jogadores.get(i);
+	        
+	        if (jogador.getFranquiaPertecente().equals(timeDesejado) && jogador.getPosicao().equals(posicaoDesejada)) {
+	            String addNome = jogador.getNome();
+	            listagem2.add(addNome);
+	        }
+	    }
+	    return posicaoDesejada+" do " +timeDesejado +":" + listagem2;
+	}	
 }
