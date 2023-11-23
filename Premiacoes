@@ -6,42 +6,74 @@ public class Premiacoes {
 	private ArrayList<Jogador> mvp;
 	private ArrayList<Jogador> dpoy;
 	private ArrayList<Jogador> jogadores;
-	private TemporadaRegular temporadaRegular;
 
-	 public Premiacoes(ArrayList<Jogador> jogadores, TemporadaRegular temporadaRegular) {
-	        this.mvp = new ArrayList<Jogador>();
-	        this.dpoy = new ArrayList<Jogador>();
-	        this.jogadores = jogadores;
-	        this.temporadaRegular = temporadaRegular; // Initialize TemporadaRegular
-	    }
+	public Premiacoes(ArrayList<Jogador> jogadores) {
+		this.mvp = new ArrayList<Jogador>();
+		this.dpoy = new ArrayList<Jogador>();
+		this.jogadores = jogadores;
+	}
 
 
-	public void verificarPremiacoes() {
+	public ArrayList<Jogador> getMvp() {
+		return mvp;
+	}
+
+
+	public void setMvp(ArrayList<Jogador> mvp) {
+		this.mvp = mvp;
+	}
+
+
+	public ArrayList<Jogador> getDpoy() {
+		return dpoy;
+	}
+
+
+	public void setDpoy(ArrayList<Jogador> dpoy) {
+		this.dpoy = dpoy;
+	}
+
+
+	public ArrayList<Jogador> getJogadores() {
+		return jogadores;
+	}
+
+
+	public void setJogadores(ArrayList<Jogador> jogadores) {
+		this.jogadores = jogadores;
+	}
+
+	public void atualizarPremiacoes() { 
+	    this.mvp.clear();
+	    this.dpoy.clear();
+
 	    for (int i = 0; i < jogadores.size(); i++) {
-	        if (jogadores.get(i).getMediaPontos() >= 28 && jogadores.get(i).getMediaAssistencias() >= 12) {
-	            mvp.add(jogadores.get(i)); 
+	        Jogador jogador = jogadores.get(i);
+
+	        if (jogador.getMediaPontos() >= 26 && jogador.getMediaAssistencias() >= 12) {
+	            mvp.add(jogador);
 	        }
 
-	        if (jogadores.get(i).getMediaRebotes() > 12 && jogadores.get(i).getMediaTocos() > 3 && jogadores.get(i).getMediaRoubos() > 2) {
-	            dpoy.add(jogadores.get(i));
+	        if (jogador.getMediaRebotes() > 12 && jogador.getMediaTocos() > 3 && jogador.getMediaRoubos() > 2) {
+	            dpoy.add(jogador);
 	        }
 	    }
 	}
 
+
 	public ArrayList<String> listaNomesMvp() {
-	    ArrayList<String> jogadoresMVP = new ArrayList<String>();
-	    for (int i = 0; i < mvp.size(); i++) {
-	        jogadoresMVP.add(mvp.get(i).getNome()); 
-	    }
-	    return jogadoresMVP;
+		ArrayList<String> jogadoresMVP = new ArrayList<String>();
+		for (int i = 0; i < mvp.size(); i++) {
+			jogadoresMVP.add(mvp.get(i).getNome()); 
+		}
+		return jogadoresMVP;
 	}
 
 	public ArrayList<String> listaNomeDpoy() {
-	    ArrayList<String> jogadoresDpoy = new ArrayList<String>();
-	    for (int i = 0; i < dpoy.size(); i++) {
-	        jogadoresDpoy.add(dpoy.get(i).getNome()); 
-	    }
-	    return jogadoresDpoy;
+		ArrayList<String> jogadoresDpoy = new ArrayList<String>();
+		for (int i = 0; i < dpoy.size(); i++) {
+			jogadoresDpoy.add(dpoy.get(i).getNome()); 
+		}
+		return jogadoresDpoy;
 	}
-
 }
