@@ -1,41 +1,23 @@
-import java.util.*;
+import java.util.ArrayList;
 import Entidades.*;
-
 public class Main {
 
-	public static void main(String[] args) {
-		TemporadaRegular tr1 = new TemporadaRegular();
-		Franquia generica = new Franquia(null, null, 0, 0, 0, 0, null);
+    public static void main(String[] args) {
+        TemporadaRegular tr1 = new TemporadaRegular();
+        ArrayList<Franquia> franquiasNBA = new ArrayList<>();
 
-		Franquia f1 = new Franquia("Clippers", "Los Angeles", 80000, 5000000, 70, 12, "Leste");
-		Franquia f2 = new Franquia("Lakers", "Los Angeles", 200000, 5000000, 68, 14, "Leste");
-		Franquia f3 = new Franquia("Magic", "Orlando", 200000, 5000000, 81, 1, "Oeste");
-		Franquia f4 = new Franquia("Celtics", "Boston", 200000, 5000000, 79, 1, "Oeste");
+        // Leste
+        Franquia f1 = new Franquia("Hawks", "Atlanta", 80000, 5000000, 44, 38, "Leste");Franquia f2 = new Franquia("Celtics", "Boston", 200000, 5000000, 21, 61, "Leste");Franquia f3 = new Franquia("Nets", "Brooklyn", 200000, 5000000, 44, 38, "Leste");Franquia f4 = new Franquia("Hornets", "Charlotte", 200000, 5000000, 57, 25, "Leste");Franquia f5 = new Franquia("Bulls", "Chicago", 200000, 5000000, 11, 71, "Leste");Franquia f6 = new Franquia("Cavaliers", "Cleveland", 200000, 5000000, 59, 23, "Leste");Franquia f7 = new Franquia("Pistons", "Detroit", 200000, 5000000, 39, 43, "Leste");Franquia f8 = new Franquia("Pacers", "Indiana", 200000, 5000000, 50, 32, "Leste");Franquia f9 = new Franquia("Heat", "Miami", 200000, 5000000, 78, 4, "Leste");Franquia f10 = new Franquia("Bucks", "Milwaukee", 200000, 5000000, 40, 42, "Leste");Franquia f11 = new Franquia("Knicks", "New York", 200000, 5000000, 23, 59, "Leste");Franquia f12 = new Franquia("Magic", "Orlando", 200000, 5000000, 38, 44, "Leste");Franquia f13 = new Franquia("Sixers", "Philadelphia", 200000, 5000000, 42, 40, "Leste");Franquia f14 = new Franquia("Raptors", "Toronto", 200000, 5000000, 32, 50, "Leste");Franquia f15 = new Franquia("Wizards", "Washington", 200000, 5000000, 33, 49, "Leste");
 
-		tr1.adicionaFranquia(f1);
-		tr1.adicionaFranquia(f2);
-		tr1.adicionaFranquia(f3);
-		tr1.adicionaFranquia(f4);
-		
-		Jogador generico = new Jogador(null, null, null, 0, 0, 0, 0, 0, 0, false, 0, null);
-		Jogador j1 = new Jogador("LeBron", "Estados Unidos", "Lakers", 11, 30, 20, 5, 2, 36, false, 2000000, "SF");
-		Jogador j2 = new Jogador("Giannis", "Grécia", "Bucks", 20, 0, 20, 20, 20, 28, false, 2000000, "PF");
-		
-		ArrayList<Jogador> jogadores = new ArrayList<>();
-		jogadores.add(j1);
-		jogadores.add(j2);
-		
-		
-		f1.adicionaJogador(j1);
-		
-		Premiacoes p1 = new Premiacoes(jogadores); 
-		p1.atualizarPremiacoes();
-		
-		System.out.println(p1.listaNomeDpoy());
-		System.out.println(p1.listaNomesMvp());
-		
-		System.out.println(generico.calculaBonus("LeBron", p1,jogadores));
-		
-		
-	}
+        // Oeste
+        Franquia f16 = new Franquia("Mavericks", "Dallas", 80000, 5000000, 15, 67, "Oeste");Franquia f17 = new Franquia("Nuggets", "Denver", 200000, 5000000, 67, 15, "Oeste");Franquia f18 = new Franquia("Warriors", "Golden State", 200000, 5000000, 45, 37, "Oeste");Franquia f19 = new Franquia("Rockets", "Houston", 200000, 5000000, 42, 40, "Oeste");Franquia f20 = new Franquia("Clippers", "Los Angeles", 200000, 5000000, 44, 38, "Oeste");Franquia f21 = new Franquia("Lakers", "Los Angeles", 200000, 5000000, 4, 78, "Oeste");Franquia f22 = new Franquia("Grizzlies", "Memphis", 200000, 5000000, 58, 24, "Oeste");Franquia f23 = new Franquia("Timberwolves", "Minnesota", 200000, 5000000, 40, 42, "Oeste");Franquia f24 = new Franquia("Pelicans", "New Orleans", 200000, 5000000, 2, 80, "Oeste");Franquia f25 = new Franquia("Thunder", "Oklahoma City", 200000, 5000000, 27, 55, "Oeste");Franquia f26 = new Franquia("Suns", "Phoenix", 200000, 5000000, 53, 29, "Oeste");Franquia f27 = new Franquia("Blazers", "Portland", 200000, 5000000, 34, 48, "Oeste");Franquia f28 = new Franquia("Kings", "Sacramento", 200000, 5000000, 21, 61, "Oeste");Franquia f29 = new Franquia("Spurs", "San Antonio", 200000, 5000000, 76, 6, "Oeste");Franquia f30 = new Franquia("Jazz", "Utah", 200000, 5000000, 12, 70, "Oeste");
+
+        tr1.adicionaFranquia(f1); tr1.adicionaFranquia(f2); tr1.adicionaFranquia(f3); tr1.adicionaFranquia(f4); tr1.adicionaFranquia(f5); tr1.adicionaFranquia(f6); tr1.adicionaFranquia(f7); tr1.adicionaFranquia(f8);tr1.adicionaFranquia(f9); tr1.adicionaFranquia(f10); tr1.adicionaFranquia(f11); tr1.adicionaFranquia(f12); tr1.adicionaFranquia(f13); tr1.adicionaFranquia(f14); tr1.adicionaFranquia(f15);tr1.adicionaFranquia(f16);tr1.adicionaFranquia(f17);tr1.adicionaFranquia(f18);tr1.adicionaFranquia(f19);tr1.adicionaFranquia(f20);tr1.adicionaFranquia(f21);tr1.adicionaFranquia(f22);tr1.adicionaFranquia(f23);tr1.adicionaFranquia(f24);tr1.adicionaFranquia(f25);tr1.adicionaFranquia(f26);tr1.adicionaFranquia(f27);tr1.adicionaFranquia(f28);tr1.adicionaFranquia(f29);tr1.adicionaFranquia(f30);
+
+        tr1.mostraClassificacao();
+        
+        tr1.classificacao();
+        System.out.println(tr1.retornaNomePlayOffsLeste());
+        System.out.println(tr1.retornaNomePlayOffsOeste());
+    }
 }
