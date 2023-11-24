@@ -11,8 +11,6 @@ public class Franquia {
 	ArrayList<Jogador> jogadores;
 	private String conferencia;
 	
-	
-	
 	public Franquia(String nome, String cidade, int quantTorcedores, double saldo, int vitorias, int derrotas,
 			String conferencia) {
 		this.nome = nome;
@@ -145,5 +143,5 @@ public class Franquia {
 	        }
 	    }
 	    return posicaoDesejada+" do " +timeDesejado +":" + listagem2;
-	}	
+	} 
 }
