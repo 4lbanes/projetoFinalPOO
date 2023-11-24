@@ -12,8 +12,8 @@ public class Jogador {
 	private double mediaRoubos;//7
 	private int idade;//8
 	private boolean lesionado;//9
-	private double salario;
-	private String posicao;
+	private double salario; //10
+	private String posicao;//11
 
 	public Jogador(String nome, String nacionalidade, String franquiaPertecente, double mediaRebotes,
 			double mediaPontos, double mediaAssistencias, double mediaTocos, double mediaRoubos, int idade,
@@ -107,7 +107,7 @@ public class Jogador {
 	public void setSalario(double salario) {
 		this.salario = salario;
 	}
-	
+
 	public double getSalario(){
 		return salario;
 	}
@@ -129,29 +129,32 @@ public class Jogador {
 	}
 
 	public void aposentar(Jogador jogadorAposentar, ArrayList<Jogador> jogadoresListados, Premiacoes premiacoes) {
-	    if (jogadoresListados.contains(jogadorAposentar)) {
-	        jogadoresListados.remove(jogadorAposentar);
-	        System.out.println("Jogador aposentado!");
-	        premiacoes.atualizarPremiacoes();
-	    } else {
-	        System.out.println("Jogador não encontrado na lista.");
-	    }
+		if (jogadoresListados.contains(jogadorAposentar)) {
+			jogadoresListados.remove(jogadorAposentar);
+			System.out.println("Jogador aposentado!");
+			premiacoes.atualizarPremiacoes();
+		} else {
+			System.out.println("Jogador não encontrado na lista.");
+		}
 	}
 
 	public String calculaBonus(String jogadorEscolhido, Premiacoes premiacoes, ArrayList<Jogador> jogadores) {
-	    double calculaBonus = 0;
-	    ArrayList<Jogador> mvps = premiacoes.getMvp();
-	    ArrayList<Jogador> dpoys = premiacoes.getDpoy();
+		double calculaBonus = 0;
+		ArrayList<Jogador> mvps = premiacoes.getMvp();
+		ArrayList<Jogador> dpoys = premiacoes.getDpoy();
+		ArrayList<Jogador> listaCompleta = new ArrayList<Jogador>();
 
-	    for (Jogador jogador : jogadores) {
-	        if (jogador.getNome().equals(jogadorEscolhido)) {
-	            if (mvps.contains(jogador) || dpoys.contains(jogador)) {
-	                calculaBonus = jogador.getSalario() * 0.5;
-	            }
-	            break;
-	        }
-	    }
-
-	    return "O bônus do " + jogadorEscolhido + " ao final dessa temporada: " + calculaBonus;
+		listaCompleta.addAll(mvps);
+		listaCompleta.addAll(dpoys);
+		
+		for (Jogador jogador : jogadores) {
+			if (jogador.getNome().equals(jogadorEscolhido)) {
+				if (listaCompleta.contains(jogador)) {
+					calculaBonus = jogador.getSalario() * 0.5;
+				}
+				break;
+			}
+		}
+		return "O bônus do " + jogadorEscolhido + " ao final dessa temporada: R$" + calculaBonus;
 	}
 }
