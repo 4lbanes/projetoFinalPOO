@@ -1,0 +1,37 @@
+package Entidades;
+import java.util.*;
+
+public class Final {
+	PlayOffsLeste generica = new PlayOffsLeste();
+	PlayOffsOeste generica2 = new PlayOffsOeste();
+	Franquia campeaLeste = generica.vencedoraLeste;
+	Franquia campeaOeste = generica2.vencedoraOeste;
+	
+	Scanner sc = new Scanner(System.in);
+	
+	public void realizarFinal() {
+		int contadorA = 0;
+		int contadorB = 0;
+		System.out.println("SENHORAS E SENHORES, QUE SE INICIE A FINAL DA NBA!!!!!!!!!!!!!!!!");
+		
+		for (int i = 0; contadorA < 4 && contadorB < 4; i++) {
+			System.out.println((i + 1) + "ª partida entre " + campeaLeste.getNome() + " e " + campeaOeste.getNome());
+			System.out.println("Qual foi o placar do jogo " + (i + 1) + " para os " + campeaLeste.getNome());
+			int resultadoA = sc.nextInt();
+			System.out.println("Qual foi o placar do jogo " + (i + 1) + " para os " + campeaOeste.getNome());
+			int resultadoB = sc.nextInt();
+
+			if (resultadoA > resultadoB) {
+				contadorA++;
+			} else {
+				contadorB++;
+			}
+		}
+
+		if (contadorA == 4) {
+			System.out.println(campeaLeste.getNome() + " VENCEU A NBA");
+		} else {
+			System.out.println(campeaOeste.getNome() + " VENCEU A NBA");
+		}
+	}
+}
