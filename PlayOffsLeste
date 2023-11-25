@@ -1,0 +1,135 @@
+package Entidades;
+import java.util.*;
+
+public class PlayOffsLeste {
+	ArrayList<Franquia> franquiasLesteClassificadas = new ArrayList<Franquia>();
+	TemporadaRegular generica = new TemporadaRegular();
+
+	public void recebeFranquiasLeste(TemporadaRegular temporadaRegular) {
+		franquiasLesteClassificadas.addAll(temporadaRegular.getFranquiasLesteClassificadas());
+	}
+
+	Scanner sc = new Scanner(System.in);
+	Random random = new Random();
+
+	ArrayList<Franquia> vencedorasPrimeiraFase = new ArrayList<>();
+	ArrayList<Franquia> vencedorasSemis = new ArrayList<>();
+	public Franquia vencedoraLeste = null;
+
+	public Franquia realizarJogo(Franquia franquiaA, Franquia franquiaB) {
+		int contadorA = 0;
+		int contadorB = 0;
+
+		for (int i = 0; contadorA < 4 && contadorB < 4; i++) {
+			System.out.println((i + 1) + "ª partida entre " + franquiaA.getNome() + " e " + franquiaB.getNome());
+			System.out.println("Qual foi o placar do jogo " + (i + 1) + " para os " + franquiaA.getNome());
+			int resultadoA = sc.nextInt();
+			System.out.println("Qual foi o placar do jogo " + (i + 1) + " para os " + franquiaB.getNome());
+			int resultadoB = sc.nextInt();
+
+			if (resultadoA > resultadoB) {
+				contadorA++;
+			} else {
+				contadorB++;
+			}
+		}
+
+		Franquia vencedora = (contadorA == 4) ? franquiaA : franquiaB;
+
+		if (contadorA == 4) {
+			System.out.println(franquiaA.getNome() + " venceu essa série!!!");
+		} else {
+			System.out.println(franquiaB.getNome() + " venceu essa série!!!");
+		}
+
+		return vencedora;
+	}	
+
+	public void primeiraFaseLeste() {
+		Franquia vencedora1r1 = null;
+        Franquia vencedora1r2 = null;
+        Franquia vencedora1r3 = null;
+        Franquia vencedora1r4 = null;
+        
+		System.out.println("COMEÇOU OS PLAYOFFS DO LESTE NA NBA!!!");
+
+		Franquia franquia1 = franquiasLesteClassificadas.get(0);
+		Franquia franquia8 = franquiasLesteClassificadas.get(7);
+		vencedorasPrimeiraFase.add(realizarJogo(franquia1, franquia8));
+		vencedora1r1 = realizarJogo(franquia1, franquia8);
+	
+		Franquia franquia2 = franquiasLesteClassificadas.get(1);
+		Franquia franquia7 = franquiasLesteClassificadas.get(6);
+		vencedorasPrimeiraFase.add(realizarJogo(franquia2, franquia7));
+		vencedora1r2 = realizarJogo(franquia2, franquia7);
+
+		Franquia franquia3 = franquiasLesteClassificadas.get(2);
+		Franquia franquia6 = franquiasLesteClassificadas.get(5);
+		vencedorasPrimeiraFase.add(realizarJogo(franquia3, franquia6));
+		vencedora1r3 = realizarJogo(franquia3, franquia6);
+
+		Franquia franquia4 = franquiasLesteClassificadas.get(3);
+		Franquia franquia5 = franquiasLesteClassificadas.get(4);
+		vencedorasPrimeiraFase.add(realizarJogo(franquia4, franquia5));
+		vencedora1r4 = realizarJogo(franquia4, franquia5);
+		
+		System.out.println(vencedora1r1.getNome() + vencedora1r2.getNome() + vencedora1r3.getNome() + vencedora1r4.getNome() + " se classificam para as semis finais do leste!!!");
+
+		semiFinaisLeste();
+	}
+
+	  public void semiFinaisLeste() {
+	        Franquia vencedoraS1 = null;
+	        Franquia vencedoraS2 = null;
+	        System.out.println("COMEÇOU AS SEMIFINAIS DO LESTE!!!");
+
+	        int tamanho = vencedorasPrimeiraFase.size();
+
+	        int indice1 = random.nextInt(tamanho);
+	        int indice2 = random.nextInt(tamanho - 1);
+	        int indice3 = random.nextInt(tamanho - 2);
+	        int indice4 = random.nextInt(tamanho - 3);
+
+	        if (indice2 >= indice1) {
+	            indice2++;
+	        } else if (indice3 >= indice1) {
+	            indice3++;
+	        } else if (indice3 >= indice2) {
+	            indice3++;
+	        } else if (indice4 >= indice1) {
+	            indice4++;
+	        } else if (indice4 >= indice2) {
+	            indice4++;
+	        } else {
+	            indice4++;
+	        }
+
+	        Franquia franquia1 = vencedorasPrimeiraFase.get(indice1);
+	        Franquia franquia2 = vencedorasPrimeiraFase.get(indice2);
+	        Franquia franquia3 = vencedorasPrimeiraFase.get(indice3);
+	        Franquia franquia4 = vencedorasPrimeiraFase.get(indice4);
+
+	        vencedoraS1 = realizarJogo(franquia1, franquia2);
+	        vencedoraS2 = realizarJogo(franquia3, franquia4);
+
+	        System.out.println(vencedoraS1.getNome() + " e " + vencedoraS2.getNome() + " vaõ disputar pela final do leste nesse ano de 2023");
+
+	        vencedorasSemis.add(vencedoraS1);
+	        vencedorasSemis.add(vencedoraS2);
+	    }
+	
+
+	public void finalLeste() {
+		System.out.println("AGORA É ONDE O FILHO CHORA E A MÃE NÃO VÊ, COMEÇOU AS FINAIS DO LESTE!!!");
+
+		Franquia franquia1 = vencedorasSemis.get(0);
+		Franquia franquia2 = vencedorasSemis.get(1);
+		vencedoraLeste = realizarJogo(franquia1, franquia2);
+		
+		System.out.println(vencedoraLeste.getNome() + " É CAMPEÃ DO LESTE!!!!!!!");
+
+	}
+}
+
+
+
