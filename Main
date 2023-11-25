@@ -17,7 +17,10 @@ public class Main {
         tr1.mostraClassificacao();
         
         tr1.classificacao();
-        System.out.println(tr1.retornaNomePlayOffsLeste());
-        System.out.println(tr1.retornaNomePlayOffsOeste());
+       
+        PlayOffsLeste pfl1 = new PlayOffsLeste();
+        
+        pfl1.recebeFranquiasLeste(tr1);
+        pfl1.primeiraFaseLeste(); 
     }
 }
