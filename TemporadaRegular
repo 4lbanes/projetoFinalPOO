@@ -197,5 +197,3 @@ public class TemporadaRegular {
 		return franquiasLesteClassificadas;
 	}	
 }
-
-
