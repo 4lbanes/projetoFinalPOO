@@ -26,6 +26,7 @@ public class Franquia {
 			derrotas = 0;
 		}
 		this.conferencia = conferencia;
+		this.jogadores = new ArrayList<>();
 	}
 
 	public String getCidade() {
@@ -106,16 +107,17 @@ public class Franquia {
 	
 	public void pesquisaJogador(String jogadorDesejado) {
 	    for (int i = 0; i < jogadores.size(); i++) {
-	        Jogador franquiaDoJogador = jogadores.get(i);
-	        String nomeJogador = franquiaDoJogador.getNome();
+	        Jogador jogador = jogadores.get(i);
 	        
-	        if (franquiaDoJogador != null && franquiaDoJogador.getNome().equals(jogadorDesejado)) {
-	            System.out.println("Jogador encontrado na franquia: " + franquiaDoJogador.getFranquiaPertecente());
-	            return; 
+	        if (jogador.getNome().equals(jogadorDesejado)) {
+	            System.out.println("Jogador encontrado na franquia: " + jogador.getFranquiaPertecente());
+	            return;
 	        }
 	    }
+	    
 	    System.out.println("Nenhum jogador encontrado com esse nome");
 	}
+
 	
 	public String listaJogadores(String timeDesejado, ArrayList<Jogador> jogadores) {
 	    ArrayList<String> listagem = new ArrayList<String>();
