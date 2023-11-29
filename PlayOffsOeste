@@ -17,63 +17,60 @@ public class PlayOffsOeste {
 	Franquia vencedoraOeste = null;
 
 	public Franquia realizarJogo(Franquia franquiaA, Franquia franquiaB) {
-	    int franquiaa = franquiasOesteClassificadas.indexOf(franquiaA);
-	    int franquiab = franquiasOesteClassificadas.indexOf(franquiaB);
+		int franquiaa = franquiasOesteClassificadas.indexOf(franquiaA);
+		int franquiab = franquiasOesteClassificadas.indexOf(franquiaB);
 
-	    int contadorA = 0;
-	    int contadorB = 0;
+		int contadorA = 0;
+		int contadorB = 0;
+		Scanner sc = new Scanner(System.in);
 
-	    for (int i = 0; contadorA < 4 && contadorB < 4; i++) {
-	        if (franquiaa < franquiab) {
-	           
-	            if (i < 2) {
-	                System.out.println((i + 1) + "ª partida entre " + franquiaA.getNome() + " e " + franquiaB.getNome() + " em " + franquiaA.getCidade());
-	            } else {
-	               
-	                if (i < 4) {
-	                    System.out.println((i + 1) + "ª partida entre " + franquiaA.getNome() + " e " + franquiaB.getNome() + " em " + franquiaB.getCidade());
-	                } else {
-	                   
-	                    System.out.println((i + 1) + "ª partida entre " + franquiaA.getNome() + " e " + franquiaB.getNome() + " em " + ((i == 4 || i == 6) ? franquiaA.getCidade() : franquiaB.getCidade()));
-	                }
-	            }
+		for (int i = 0; contadorA < 4 && contadorB < 4; i++) {
+			int resultadoA = 0; 
+			int resultadoB = 0; 
 
-	            System.out.println("Qual foi o placar do jogo " + (i + 1) + " para os " + franquiaA.getNome());
-	            int resultadoA = sc.nextInt();
-	            System.out.println("Qual foi o placar do jogo " + (i + 1) + " para os " + franquiaB.getNome());
-	            int resultadoB = sc.nextInt();
+			try {
+				if (franquiaa < franquiab) {
+					System.out.println((i + 1) + "ª partida entre " + franquiaA.getNome() + " e " + franquiaB.getNome());
+					System.out.println("Qual foi o placar do jogo " + (i + 1) + " para os " + franquiaA.getNome());
+					resultadoA = sc.nextInt();
 
-	            if (resultadoA > resultadoB) {
-	                contadorA++;
-	            } else {
-	                contadorB++;
-	            }
-	        }
-	    }
+					System.out.println("Qual foi o placar do jogo " + (i + 1) + " para os " + franquiaB.getNome());
+					resultadoB = sc.nextInt();
 
-	    Franquia vencedora = (contadorA == 4) ? franquiaA : franquiaB;
+					if (resultadoA > resultadoB) {
+						contadorA++;
+					} else {
+						contadorB++;
+					}
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("Caractere inválido! Resultados inseridos: 0");
+				sc.nextLine(); 
+			}
+		}
 
-	    if (contadorA == 4) {
-	        System.out.println(franquiaA.getNome() + " venceu essa série!!!");
-	    } else {
-	        System.out.println(franquiaB.getNome() + " venceu essa série!!!");
-	    }
+		Franquia vencedora = (contadorA == 4) ? franquiaA : franquiaB;
 
-	    return vencedora;
+		if (contadorA == 4) {
+			System.out.println(franquiaA.getNome() + " venceu essa série!!!");
+		} else {
+			System.out.println(franquiaB.getNome() + " venceu essa série!!!");
+		}
+		return vencedora;
 	}
-	
+
 	public void primeiraFaseOeste() {
 		Franquia vencedora1r1 = null;
-        Franquia vencedora1r2 = null;
-        Franquia vencedora1r3 = null;
-        Franquia vencedora1r4 = null;
-        
+		Franquia vencedora1r2 = null;
+		Franquia vencedora1r3 = null;
+		Franquia vencedora1r4 = null;
+
 		System.out.println("COMEÇOU OS PLAYOFFS DO OESTE NA NBA!!!");
 
 		Franquia franquia1 = franquiasOesteClassificadas.get(0);
 		Franquia franquia8 = franquiasOesteClassificadas.get(7);
 		vencedorasPrimeiraFase.add(realizarJogo(franquia1, franquia8));
-	
+
 		Franquia franquia2 = franquiasOesteClassificadas.get(1);
 		Franquia franquia7 = franquiasOesteClassificadas.get(6);
 		vencedorasPrimeiraFase.add(realizarJogo(franquia2, franquia7));
@@ -85,7 +82,7 @@ public class PlayOffsOeste {
 		Franquia franquia4 = franquiasOesteClassificadas.get(3);
 		Franquia franquia5 = franquiasOesteClassificadas.get(4);
 		vencedorasPrimeiraFase.add(realizarJogo(franquia4, franquia5));
-		
+
 		vencedora1r1 = vencedorasPrimeiraFase.get(0);
 		vencedora1r2 = vencedorasPrimeiraFase.get(1);
 		vencedora1r3 = vencedorasPrimeiraFase.get(2);
@@ -99,13 +96,13 @@ public class PlayOffsOeste {
 		Franquia vencedoraS2 = null;
 		System.out.println("COMEÇOU AS SEMIFINAIS DO OESTE!!!");
 
-        Franquia franquia1 = vencedorasPrimeiraFase.get(0);
-        Franquia franquia2 = vencedorasPrimeiraFase.get(1);
-        Franquia franquia3 = vencedorasPrimeiraFase.get(2);
-        Franquia franquia4 = vencedorasPrimeiraFase.get(3);
+		Franquia franquia1 = vencedorasPrimeiraFase.get(0);
+		Franquia franquia2 = vencedorasPrimeiraFase.get(1);
+		Franquia franquia3 = vencedorasPrimeiraFase.get(2);
+		Franquia franquia4 = vencedorasPrimeiraFase.get(3);
 
-        vencedoraS1 = realizarJogo(franquia1, franquia4);
-        vencedoraS2 = realizarJogo(franquia2, franquia3);
+		vencedoraS1 = realizarJogo(franquia1, franquia4);
+		vencedoraS2 = realizarJogo(franquia2, franquia3);
 
 		System.out.println(vencedoraS1.getNome() + " e " + vencedoraS2.getNome() + " vaõ disputar pela final do oeste nesse ano de 2023");
 
@@ -120,9 +117,9 @@ public class PlayOffsOeste {
 		Franquia franquia2 = vencedorasSemis.get(1);
 		vencedoraOeste = realizarJogo(franquia1, franquia2);
 
-		System.out.println(vencedoraOeste.getNome() + " É CAMPEÃ DO OESTE!!!!!!!");
+		System.out.println(vencedoraOeste.getNome().toUpperCase() + " É CAMPEÃ DO OESTE!!!!!!!");
 	}
-	
+
 	public void oeste(){
 		primeiraFaseOeste();
 		semiFinaisOeste();
