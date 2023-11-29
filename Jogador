@@ -137,21 +137,21 @@ public class Jogador {
 			System.out.println("Jogador não encontrado na lista.");
 		}
 	}
-	
-	public void calculaBonus(String jogadorEscolhido, Premiacoes premiacoes, ArrayList<Jogador> jogadores) {
-	    double calculaBonus = 0;
-	    ArrayList<Jogador> mvps = premiacoes.getMvp();
-	    ArrayList<Jogador> dpoys = premiacoes.getDpoy();
 
-	    for (Jogador jogador : jogadores) {
-	        if (jogador.getNome().equalsIgnoreCase(jogadorEscolhido) && jogadores.contains(jogadorEscolhido) && (mvps.contains(jogador) || dpoys.contains(jogador))) {
-	            calculaBonus = jogador.getSalario() * 0.5;
-	            System.out.println("O bônus do " + jogadorEscolhido + " ao final dessa temporada: R$" + calculaBonus);
-	            break;
-	        }else {
-	        	System.out.println(jogadorEscolhido + " não encontrado.");
-	        	break;
-	        }
-	    }
+	public void calculaBonus(String jogadorEscolhido, Premiacoes premiacoes, ArrayList<Jogador> jogadores) {
+		double calculaBonus = 0;
+		ArrayList<Jogador> mvps = premiacoes.getMvp();
+		ArrayList<Jogador> dpoys = premiacoes.getDpoy();
+
+		for (Jogador jogador : jogadores) {
+			if (jogador.getNome().equalsIgnoreCase(jogadorEscolhido) && jogadores.contains(jogadorEscolhido) && (mvps.contains(jogador) || dpoys.contains(jogador))) {
+				calculaBonus = jogador.getSalario() * 0.5;
+				System.out.println("O bônus do " + jogadorEscolhido + " ao final dessa temporada: R$" + calculaBonus);
+				break;
+			}else {
+				System.out.println(jogadorEscolhido + " não encontrado.");
+				break;
+			}
+		}
 	}
 }
