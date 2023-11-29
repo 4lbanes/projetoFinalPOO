@@ -1,7 +1,7 @@
 package Entidades;
 import java.util.*;
 
-public class TemporadaRegular {
+public class TemporadaRegular implements atualizaFranquias {
 	ArrayList<Franquia> franquias;
 	ArrayList<String> franquiasOeste = new ArrayList<>();
 	ArrayList<String> franquiasLeste = new ArrayList<>();
@@ -64,7 +64,7 @@ public class TemporadaRegular {
 	public TemporadaRegular() {
 		franquias = new ArrayList<>();
 		classifica(null);
-	}
+	} 
 
 
 	public void adicionaFranquia(Franquia franquiaAdicionada) {
