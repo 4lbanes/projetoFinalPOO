@@ -2,38 +2,64 @@ package Entidades;
 import java.util.*;
 
 public class Final {
-	PlayOffsLeste generica = new PlayOffsLeste();
-	PlayOffsOeste generica2 = new PlayOffsOeste();
-	Franquia campeaLeste;
-	Franquia campeaOeste;
+    private PlayOffsLeste generica;
+    private PlayOffsOeste generica2;
+    private Franquia campeaLeste;
+    private Franquia campeaOeste;
+    private Franquia campeaNba;
 
-	Scanner sc = new Scanner(System.in);
+    public Final(PlayOffsLeste generica, PlayOffsOeste generica2) {
+        this.generica = generica;
+        this.generica2 = generica2;
+    }
 
-	public void realizarFinal() {
-		campeaLeste = generica.vencedoraLeste;
-		campeaOeste = generica2.vencedoraOeste;
-		int contadorA = 0;
-		int contadorB = 0;
-		System.out.println("SENHORAS E SENHORES, QUE SE INICIE A FINAL DA NBA!!!!!!!!!!!!!!!!");
+    public void realizarFinal() {
+        campeaLeste = generica.vencedoraLeste;
+        campeaOeste = generica2.vencedoraOeste;
 
-		for (int i = 0; contadorA < 4 && contadorB < 4; i++) {
-			System.out.println((i + 1) + "ª partida entre " + campeaLeste.getNome() + " e " + campeaOeste.getNome());
-			System.out.println("Qual foi o placar do jogo " + (i + 1) + " para os " + campeaLeste.getNome());
-			int resultadoA = sc.nextInt();
-			System.out.println("Qual foi o placar do jogo " + (i + 1) + " para os " + campeaOeste.getNome());
-			int resultadoB = sc.nextInt();
+        if (campeaLeste == null || campeaOeste == null) {
+            System.out.println("Não foi possível determinar os campeões de conferência. A final não pode ser realizada.");
+            return;
+        }
 
-			if (resultadoA > resultadoB) {
-				contadorA++;
-			} else {
-				contadorB++;
-			}
-		}
+        int contadorA = 0;
+        int contadorB = 0;
+        Scanner sc = new Scanner(System.in);
 
-		if (contadorA == 4) {
-			System.out.println(campeaLeste.getNome() + " VENCEU A NBA!!!");
-		} else {
-			System.out.println(campeaOeste.getNome() + " VENCEU A NBA!!!");
-		}
+        System.out.println("SENHORAS E SENHORES, QUE SE INICIE A FINAL DA NBA!!!!!!!!!!!!!!!!");
+
+        for (int i = 0; contadorA < 4 && contadorB < 4; i++) {
+            try {
+                System.out.println((i + 1) + "ª partida entre " + campeaLeste.getNome() + " e " + campeaOeste.getNome());
+                System.out.println("Qual foi o placar do jogo " + (i + 1) + " para os " + campeaLeste.getNome());
+                int resultadoA = sc.nextInt();
+                System.out.println("Qual foi o placar do jogo " + (i + 1) + " para os " + campeaOeste.getNome());
+                int resultadoB = sc.nextInt();
+
+                if (resultadoA > resultadoB) {
+                    contadorA++;
+                } else {
+                    contadorB++;
+                }
+            } catch (InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("Caractere inválido! Resultado inserido: 0");
+            }
+        }
+        if (contadorA == 4) {
+        	campeaNba = campeaLeste;
+            System.out.println((campeaLeste != null ? campeaLeste.getNome().toUpperCase() : "Time Leste") + " VENCEU A NBA!!!");
+        } else {
+        	campeaNba = campeaOeste;
+            System.out.println((campeaOeste != null ? campeaOeste.getNome().toUpperCase() : "Time Oeste") + " VENCEU A NBA!!!");
+        }
+    }
+
+	public Franquia getCampeaNba() {
+		return campeaNba;
+	}
+
+	public void setCampeaNba(Franquia campeaNba) {
+		this.campeaNba = campeaNba;
 	}
 }
