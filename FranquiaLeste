@@ -1,0 +1,13 @@
+package Entidades;
+import java.util.*;
+
+public class FranquiaLeste extends Franquia {
+    static ArrayList<Franquia> franquiasLeste = new ArrayList<Franquia>();
+
+    public FranquiaLeste(String nome, String cidade, int quantTorcedores, double saldo, int vitorias, int derrotas,
+            String conferencia) {
+        super(nome, cidade, quantTorcedores, saldo, vitorias, derrotas, conferencia);
+        conferencia = "Leste";
+        franquiasLeste.add(this); 
+    }
+}
