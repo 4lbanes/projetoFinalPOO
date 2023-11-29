@@ -1,11 +1,11 @@
 package Entidades;
 import java.util.*;
 
-public class Franquia {
+public abstract class Franquia{
 	private String nome;
 	private String cidade;
 	private int quantTorcedores;
-	private double saldo;
+	protected double saldo;
 	private int vitorias;
 	private int derrotas;
 	ArrayList<Jogador> jogadores;
@@ -146,4 +146,18 @@ public class Franquia {
 	    }
 	    return posicaoDesejada+" do " +timeDesejado +":" + listagem2;
 	} 
+	
+	public double calculaBonus(String franquiaDesejada) {
+		PlayOffsLeste pfl1 = new PlayOffsLeste();
+		PlayOffsOeste pfo1 = new PlayOffsOeste();
+	
+		Final f1 = new Final(pfl1, pfo1);
+		Franquia pegaFranquia = f1.getCampeaNba();
+		
+		if(pegaFranquia.getNome().equals(franquiaDesejada)) {
+			return saldo + 100000000;
+		}else {
+			return saldo;
+		}
+	}
 }
