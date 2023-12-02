@@ -1,11 +1,12 @@
 package Entidades;
 import java.util.*;
 
-public class PlayOffsOeste {
+public class PlayOffsOeste implements PlayOffs {
 	ArrayList<Franquia> franquiasOesteClassificadas = new ArrayList<Franquia>();
 	TemporadaRegular generica = new TemporadaRegular();
 
-	public void recebeFranquiasOeste(TemporadaRegular temporadaRegular) {
+	
+	public void recebeFranquias(TemporadaRegular temporadaRegular) {
 		franquiasOesteClassificadas.addAll(temporadaRegular.getFranquiasOesteClassificadas());
 	}
 
@@ -53,18 +54,20 @@ public class PlayOffsOeste {
 
 		if (contadorA == 4) {
 			System.out.println(franquiaA.getNome() + " venceu essa série!!!");
+			System.out.println("----------------------------------------------------");
 		} else {
+			
 			System.out.println(franquiaB.getNome() + " venceu essa série!!!");
+			System.out.println("----------------------------------------------------");
 		}
 		return vencedora;
 	}
 
-	public void primeiraFaseOeste() {
+	public void primeiraFase() {
 		Franquia vencedora1r1 = null;
 		Franquia vencedora1r2 = null;
 		Franquia vencedora1r3 = null;
 		Franquia vencedora1r4 = null;
-
 		System.out.println("COMEÇOU OS PLAYOFFS DO OESTE NA NBA!!!");
 
 		Franquia franquia1 = franquiasOesteClassificadas.get(0);
@@ -91,9 +94,10 @@ public class PlayOffsOeste {
 		System.out.println(vencedora1r1.getNome() +", "+ vencedora1r2.getNome() +", "+ vencedora1r3.getNome() +", "+ vencedora1r4.getNome() + " se classificam para as semis do oeste!!!");
 	}
 
-	public void semiFinaisOeste() {
+	public void semiFinais() {
 		Franquia vencedoraS1 = null;
 		Franquia vencedoraS2 = null;
+		System.out.println("----------------------------------------------------");
 		System.out.println("COMEÇOU AS SEMIFINAIS DO OESTE!!!");
 
 		Franquia franquia1 = vencedorasPrimeiraFase.get(0);
@@ -110,20 +114,21 @@ public class PlayOffsOeste {
 		vencedorasSemis.add(vencedoraS2);
 	}
 
-	public void finalOeste() {
+	public void realizaFinal() {
+		System.out.println("-----------------------------------------------------------------------------");
 		System.out.println("AGORA É ONDE O FILHO CHORA E A MÃE NÃO VÊ, COMEÇOU AS FINAIS DO OESTE!!!");
 
 		Franquia franquia1 = vencedorasSemis.get(0);
 		Franquia franquia2 = vencedorasSemis.get(1);
 		vencedoraOeste = realizarJogo(franquia1, franquia2);
 
-		System.out.println(vencedoraOeste.getNome().toUpperCase() + " É CAMPEÃ DO OESTE!!!!!!!");
+		System.out.println(vencedoraOeste.getNome().toUpperCase() + " É CAMPEÃO DO OESTE!!!!!!!");
 	}
 
 	public void oeste(){
-		primeiraFaseOeste();
-		semiFinaisOeste();
-		finalOeste();
+		primeiraFase();
+		semiFinais();
+		realizaFinal();
 	}
 }
 
