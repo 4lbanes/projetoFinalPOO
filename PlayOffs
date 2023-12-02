@@ -1,0 +1,14 @@
+package Entidades;
+
+import java.util.ArrayList;
+
+public interface PlayOffs {
+	
+	public Franquia realizarJogo(Franquia franquiaA, Franquia franquiaB);
+	
+	public void primeiraFase();
+	
+	public void semiFinais();
+	
+	public void realizaFinal();
+}
