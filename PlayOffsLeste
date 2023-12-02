@@ -2,11 +2,11 @@ package Entidades;
 import java.util.*;
 
 
-public class PlayOffsLeste {
+public class PlayOffsLeste implements PlayOffs {
 	ArrayList<Franquia> franquiasLesteClassificadas = new ArrayList<Franquia>();
 	TemporadaRegular generica = new TemporadaRegular();
 
-	public void recebeFranquiasLeste(TemporadaRegular temporadaRegular) {
+	public void recebeFranquias(TemporadaRegular temporadaRegular) {
 		franquiasLesteClassificadas.addAll(temporadaRegular.getFranquiasLesteClassificadas());
 	}
 
@@ -15,6 +15,7 @@ public class PlayOffsLeste {
 	ArrayList<Franquia> vencedorasSemis = new ArrayList<>();
 	Franquia vencedoraLeste = null;
 
+	@Override
 	public Franquia realizarJogo(Franquia franquiaA, Franquia franquiaB) {
 		int franquiaa = franquiasLesteClassificadas.indexOf(franquiaA);
 		int franquiab = franquiasLesteClassificadas.indexOf(franquiaB);
@@ -52,14 +53,16 @@ public class PlayOffsLeste {
 
 		if (contadorA == 4) {
 			System.out.println(franquiaA.getNome() + " venceu essa série!!!");
+			System.out.println("----------------------------------------------------");
 		} else {
 			System.out.println(franquiaB.getNome() + " venceu essa série!!!");
+			System.out.println("----------------------------------------------------");
 		}
 		return vencedora;
 	}
 
-
-	public void primeiraFaseLeste() {
+	@Override
+	public void primeiraFase() {
 		Franquia vencedora1r1 = null;
 		Franquia vencedora1r2 = null;
 		Franquia vencedora1r3 = null;
@@ -91,9 +94,11 @@ public class PlayOffsLeste {
 		System.out.println(vencedora1r1.getNome() +", "+ vencedora1r2.getNome() +", "+ vencedora1r3.getNome() +", "+ vencedora1r4.getNome() + " se classificam para as semis do leste!!!");
 	}
 
-	public void semiFinaisLeste() {
+	@Override
+	public void semiFinais() {
 		Franquia vencedoraS1 = null;
 		Franquia vencedoraS2 = null;
+		System.out.println("----------------------------------------------------");
 		System.out.println("COMEÇOU AS SEMIFINAIS DO LESTE!!!");
 
 		Franquia franquia1 = vencedorasPrimeiraFase.get(0);
@@ -110,21 +115,23 @@ public class PlayOffsLeste {
 		vencedorasSemis.add(vencedoraS2);
 	}
 
-	public void finalLeste() {
+	@Override
+	public void realizaFinal() {
+		System.out.println("-----------------------------------------------------------------------------");
 		System.out.println("AGORA É ONDE O FILHO CHORA E A MÃE NÃO VÊ, COMEÇOU AS FINAIS DO LESTE!!!");
 
 		Franquia franquia1 = vencedorasSemis.get(0);
 		Franquia franquia2 = vencedorasSemis.get(1);
 		vencedoraLeste = realizarJogo(franquia1, franquia2);
 
-		System.out.println(vencedoraLeste.getNome().toUpperCase() + " É CAMPEÃ DO LESTE!!!!!!!");
+		System.out.println(vencedoraLeste.getNome().toUpperCase() + " É CAMPEÃO DO LESTE!!!!!!!");
 	}
 
 	public void leste(){
-		primeiraFaseLeste();
-		semiFinaisLeste();
-		finalLeste();
-	}
+		primeiraFase();
+		semiFinais();
+		realizaFinal();
+	}	
 }
 
 
