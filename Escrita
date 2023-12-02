@@ -1,0 +1,64 @@
+package Entidades;
+
+import java.io.*;
+import java.util.*;
+
+public class Escrita {
+	private ArrayList<Franquia> franquias;
+	ArrayList<String> franquiasOeste = new ArrayList<>();
+	ArrayList<String> franquiasLeste = new ArrayList<>();
+	ArrayList<Franquia> franquiasOesteClassificadas = new ArrayList<>();
+	ArrayList<Franquia> franquiasLesteClassificadas = new ArrayList<>();
+
+	public Escrita(ArrayList<Franquia> fs) {
+		this.franquias = fs;
+	}
+
+	public void classificacao() {
+		for (int i = 0; i < franquias.size(); i++) {
+			for (int j = i + 1; j < franquias.size(); j++) {
+				Franquia franquiaI = franquias.get(i);
+				Franquia franquiaJ = franquias.get(j);
+
+				if (franquiaJ.getVitorias() > franquiaI.getVitorias() || (franquiaJ.getVitorias() == franquiaI.getVitorias() && franquiaJ.getDerrotas() < franquiaI.getDerrotas())) {
+					Franquia temp = franquiaI;
+					franquias.set(i, franquiaJ);
+					franquias.set(j, temp);
+				}
+
+			}
+		}
+	}
+
+	private void exibeClassificacaoPorConferencia(String conferencia, FileWriter fw) throws IOException {
+		fw.write("Classificação " + conferencia + ":\n");
+		int count = 1;
+
+		for (Franquia franquia : franquias) {
+			if (franquia.getConferencia().equals(conferencia)) {
+				fw.write(count + ". " + franquia.getNome() +
+						" - Vitórias: " + franquia.getVitorias() +
+						", Derrotas: " + franquia.getDerrotas() + "\n");
+				count++;
+			}
+		}
+		fw.write("\n");
+	}
+
+	public void efetuaEscritaTempRegular(String filename) throws IOException {
+		try {
+			File f = new File(filename);
+			FileWriter fw = new FileWriter(f);
+
+			classificacao(); 
+			exibeClassificacaoPorConferencia("Leste", fw);
+			exibeClassificacaoPorConferencia("Oeste", fw);
+
+			fw.close();
+			System.out.println("Arquivo gerado com sucesso!");
+		} catch (IOException e) {
+			System.out.println("Erro de escrita do arquivo: " + e.getMessage());
+		}
+	}
+}
+
