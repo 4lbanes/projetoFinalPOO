@@ -1,18 +1,18 @@
 package Entidades;
 import java.util.*;
 
-public class TemporadaRegular implements atualizaFranquias {
-	ArrayList<Franquia> franquias;
+public class TemporadaRegular {
+	ArrayList<Franquia> franquias = new ArrayList<>();
 	ArrayList<String> franquiasOeste = new ArrayList<>();
 	ArrayList<String> franquiasLeste = new ArrayList<>();
 	ArrayList<Franquia> franquiasOesteClassificadas = new ArrayList<>();
 	ArrayList<Franquia> franquiasLesteClassificadas = new ArrayList<>();
-	
+
 	public void classifica(Franquia confs) {
 		if (confs == null) {
 			return; 
 		}
-		
+
 		String pegaConf = confs.getConferencia();
 
 		for(int i = 0; i < franquias.size(); i++) {
@@ -67,126 +67,103 @@ public class TemporadaRegular implements atualizaFranquias {
 	} 
 
 
-	public void adicionaFranquia(Franquia franquiaAdicionada) {
-		franquias.add(franquiaAdicionada);
-	}
-
+	public void adicionaFranquia(Franquia franquia) {
+        franquias.add(franquia);
+    }
 	public void classificacao() {
-	    for (int i = 0; i < franquias.size(); i++) {
-	        for (int j = i + 1; j < franquias.size(); j++) {
-	            Franquia franquiaI = franquias.get(i);
-	            Franquia franquiaJ = franquias.get(j);
+		for (int i = 0; i < franquias.size(); i++) {
+			for (int j = i + 1; j < franquias.size(); j++) {
+				Franquia franquiaI = franquias.get(i);
+				Franquia franquiaJ = franquias.get(j);
 
-	            if (franquiaJ.getVitorias() > franquiaI.getVitorias() || (franquiaJ.getVitorias() == franquiaI.getVitorias() && franquiaJ.getDerrotas() < franquiaI.getDerrotas())) {
-	                Franquia temp = franquiaI;
-	                franquias.set(i, franquiaJ);
-	                franquias.set(j, temp);
-	            }
-	        }
-	    }
+				if (franquiaJ.getVitorias() > franquiaI.getVitorias() || (franquiaJ.getVitorias() == franquiaI.getVitorias() && franquiaJ.getDerrotas() < franquiaI.getDerrotas())) {
+					Franquia temp = franquiaI;
+					franquias.set(i, franquiaJ);
+					franquias.set(j, temp);
+				}
+			}
+		}
 
-	    int countOeste = 0;
-	    int countLeste = 0;
+		int countOeste = 0;
+		int countLeste = 0;
 
-	    franquiasOeste.clear();
-	    franquiasLeste.clear();
-	    
-	    for(Franquia franquia : franquias) {
-	    	if(franquia.getConferencia().equals("Oeste")) {
-	    		franquiasOeste.add(franquia.getNome());
-	    	}else {
-	    		franquiasLeste.add(franquia.getNome());
-	    	}
-	    }
+		franquiasOeste.clear();
+		franquiasLeste.clear();
 
-	    for (Franquia franquia : franquias) {
-	        if (countLeste < 8 && franquia.getConferencia().equals("Leste")) {
-	            franquiasLesteClassificadas.add(franquia); 
-	            countLeste++;
-	        } else if (countOeste < 8 && franquia.getConferencia().equals("Oeste")) {
-	            franquiasOesteClassificadas.add(franquia);
-	            countOeste++;
-	        }
-	    }
+		for(Franquia franquia : franquias) {
+			if(franquia.getConferencia().equals("Oeste")) {
+				franquiasOeste.add(franquia.getNome());
+			}else {
+				franquiasLeste.add(franquia.getNome());
+			}
+		}
+
+		for (Franquia franquia : franquias) {
+			if (countLeste < 8 && franquia.getConferencia().equalsIgnoreCase("Leste")) {
+				franquiasLesteClassificadas.add(franquia); 
+				countLeste++;
+			} else if (countOeste < 8 && franquia.getConferencia().equalsIgnoreCase("Oeste")) {
+				franquiasOesteClassificadas.add(franquia);
+				countOeste++;
+			}
+		}
 	}
 
-	
-	private void exibeClassificacaoPorConferencia(String conferencia) {
-	    System.out.println("Classificação " + conferencia + ":");
-	    int count = 1;
-
-	    for (Franquia franquia : franquias) {
-	        if (franquia.getConferencia().equals(conferencia)) {
-	            System.out.println(count + ". " + franquia.getNome() +
-	                    " - Vitórias: " + franquia.getVitorias() +
-	                    ", Derrotas: " + franquia.getDerrotas());
-	            count++;
-	        }
-	    }
-	    System.out.println();
-	}
-
-	public void mostraClassificacao() {
-	    classificacao();
-	    exibeClassificacaoPorConferencia("Leste");
-	    exibeClassificacaoPorConferencia("Oeste");
-	}
-	
 	public ArrayList<String> retornaNomePlayOffsLeste() {
-	    classificacao();
-	    ArrayList<String> franquiasLesteClassificadas = new ArrayList<>();
-	    for (int i = 0; i < franquias.size() && franquiasLesteClassificadas.size() < 8; i++) {
-	        Franquia franquia = franquias.get(i); 
-	        String pegaNome = franquia.getNome();
-	        
-	        if (franquia.getConferencia().equals("Leste")) {
-	            franquiasLesteClassificadas.add(pegaNome);
-	        }
-	    }
-	    return franquiasLesteClassificadas;
-	}
-	
-	public ArrayList<String> retornaNomePlayOffsOeste() {
-	    classificacao();
-	    ArrayList<String> franquiasOesteClassificadas = new ArrayList<>();
-	    for (int i = 0; i < franquias.size() && franquiasOesteClassificadas.size() < 8; i++) {
-	        Franquia franquia = franquias.get(i);
-	        String pegaNome = franquia.getNome();
-	        if (franquia.getConferencia().equals("Oeste")) {
-	            franquiasOesteClassificadas.add(pegaNome);
-	        }
-	    }
-	    return franquiasOesteClassificadas;
-	}
-	
-	public ArrayList<Franquia> PlayOffsLeste() {
-	    classificacao();
-	    ArrayList<Franquia> franquiasLesteClassificadas2 = new ArrayList<>();
-	    for (int i = 0; i < franquias.size() && franquiasLesteClassificadas2.size() < 8; i++) {
-	        Franquia franquia = franquias.get(i);
-	        String pegaNome = franquia.getNome();
+		classificacao();
+		ArrayList<String> franquiasLesteClassificadas = new ArrayList<>();
+		for (int i = 0; i < franquias.size() && franquiasLesteClassificadas.size() < 8; i++) {
+			Franquia franquia = franquias.get(i); 
+			String pegaNome = franquia.getNome();
 
-	        if (franquia.getConferencia().equals("Leste")) {
-	            franquiasLesteClassificadas2.add(franquia);
-	            franquiasLesteClassificadas.add(franquia);  
-	        }
-	    }
-	    return franquiasLesteClassificadas2;
+			if (franquia.getConferencia().equals("Leste")) {
+				franquiasLesteClassificadas.add(pegaNome);
+			}
+		}
+		return franquiasLesteClassificadas;
+	}
+
+	public ArrayList<String> retornaNomePlayOffsOeste() {
+		classificacao();
+		ArrayList<String> franquiasOesteClassificadas = new ArrayList<>();
+		for (int i = 0; i < franquias.size() && franquiasOesteClassificadas.size() < 8; i++) {
+			Franquia franquia = franquias.get(i);
+			String pegaNome = franquia.getNome();
+			if (franquia.getConferencia().equals("Oeste")) {
+				franquiasOesteClassificadas.add(pegaNome);
+			}
+		}
+		return franquiasOesteClassificadas;
+	}
+
+	public ArrayList<Franquia> PlayOffsLeste() {
+		classificacao();
+		ArrayList<Franquia> franquiasLesteClassificadas2 = new ArrayList<>();
+		for (int i = 0; i < franquias.size() && franquiasLesteClassificadas2.size() < 8; i++) {
+			Franquia franquia = franquias.get(i);
+			String pegaNome = franquia.getNome();
+
+			if (franquia.getConferencia().equals("Leste")) {
+				franquiasLesteClassificadas2.add(franquia);
+				franquiasLesteClassificadas.add(franquia);  
+			}
+		}
+		return franquiasLesteClassificadas2;
 	}
 
 	public ArrayList<Franquia> PlayOffsOeste() {
-	    classificacao();
-	    ArrayList<Franquia> franquiasOesteClassificadas2 = new ArrayList<>();
-	    for (int i = 0; i < franquias.size() && franquiasOesteClassificadas2.size() < 8; i++) {
-	        Franquia franquia = franquias.get(i); 
-	        String pegaNome = franquia.getNome();
-	        
-	        if (franquia.getConferencia().equals("Oeste")) {
-	            franquiasOesteClassificadas2.add(franquia);
-	            franquiasOesteClassificadas.add(franquia);
-	        }
-	    }
-	    return franquiasOesteClassificadas2;
+		classificacao();
+		ArrayList<Franquia> franquiasOesteClassificadas2 = new ArrayList<>();
+		for (int i = 0; i < franquias.size() && franquiasOesteClassificadas2.size() < 8; i++) {
+			Franquia franquia = franquias.get(i); 
+			String pegaNome = franquia.getNome();
+
+			if (franquia.getConferencia().equals("Oeste")) {
+				franquiasOesteClassificadas2.add(franquia);
+				franquiasOesteClassificadas.add(franquia);
+			}
+		}
+		return franquiasOesteClassificadas2;
 	}
 
 	public ArrayList<Franquia> getFranquiasOesteClassificadas() {
