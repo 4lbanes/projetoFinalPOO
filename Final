@@ -6,8 +6,7 @@ public class Final {
     private PlayOffsOeste generica2;
     private Franquia campeaLeste;
     private Franquia campeaOeste;
-    private Franquia campeaNba;
-
+    
     public Final(PlayOffsLeste generica, PlayOffsOeste generica2) {
         this.generica = generica;
         this.generica2 = generica2;
@@ -25,7 +24,7 @@ public class Final {
         int contadorA = 0;
         int contadorB = 0;
         Scanner sc = new Scanner(System.in);
-
+        System.out.println("--------------------------------------------------------------------------------------");
         System.out.println("SENHORAS E SENHORES, QUE SE INICIE A FINAL DA NBA!!!!!!!!!!!!!!!!");
 
         for (int i = 0; contadorA < 4 && contadorB < 4; i++) {
@@ -47,19 +46,9 @@ public class Final {
             }
         }
         if (contadorA == 4) {
-        	campeaNba = campeaLeste;
             System.out.println((campeaLeste != null ? campeaLeste.getNome().toUpperCase() : "Time Leste") + " VENCEU A NBA!!!");
         } else {
-        	campeaNba = campeaOeste;
             System.out.println((campeaOeste != null ? campeaOeste.getNome().toUpperCase() : "Time Oeste") + " VENCEU A NBA!!!");
         }
     }
-
-	public Franquia getCampeaNba() {
-		return campeaNba;
-	}
-
-	public void setCampeaNba(Franquia campeaNba) {
-		this.campeaNba = campeaNba;
-	}
 }
