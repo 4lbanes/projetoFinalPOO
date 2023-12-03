@@ -21,12 +21,21 @@ public class Jogador {
 		this.nome = nome;
 		this.nacionalidade = nacionalidade;
 		this.franquiaPertecente = franquiaPertecente;
+		if(mediaRebotes >= 0 && mediaPontos >= 0 && mediaAssistencias >= 0 && mediaTocos >= 0 && mediaRoubos >= 0 && idade >= 19 ) {
 		this.mediaRebotes = mediaRebotes;
 		this.mediaPontos = mediaPontos;
 		this.mediaAssistencias = mediaAssistencias;
 		this.mediaTocos = mediaTocos;
 		this.mediaRoubos = mediaRoubos;
 		this.idade = idade;
+		} else {
+			this.mediaRebotes = 0;
+			this.mediaPontos = 0;
+			this.mediaAssistencias = 0;
+			this.mediaTocos = 0;
+			this.mediaRoubos = 0;
+			this.idade = 19;
+		}
 		this.lesionado = lesionado;
 		this.salario = salario;
 		this.posicao = posicao;
