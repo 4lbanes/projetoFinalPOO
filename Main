@@ -17,7 +17,14 @@ public class Main {
 
 		tr1.adicionaFranquia(f1); tr1.adicionaFranquia(f2); tr1.adicionaFranquia(f3); tr1.adicionaFranquia(f4);tr1.adicionaFranquia(f5); tr1.adicionaFranquia(f6); tr1.adicionaFranquia(f7); tr1.adicionaFranquia(f8);tr1.adicionaFranquia(f9); tr1.adicionaFranquia(f10); tr1.adicionaFranquia(f11); tr1.adicionaFranquia(f12);tr1.adicionaFranquia(f13); tr1.adicionaFranquia(f14); tr1.adicionaFranquia(f15); tr1.adicionaFranquia(f16);tr1.adicionaFranquia(f17); tr1.adicionaFranquia(f18); tr1.adicionaFranquia(f19); tr1.adicionaFranquia(f20);tr1.adicionaFranquia(f21); tr1.adicionaFranquia(f22); tr1.adicionaFranquia(f23); tr1.adicionaFranquia(f24);tr1.adicionaFranquia(f25); tr1.adicionaFranquia(f26); tr1.adicionaFranquia(f27); tr1.adicionaFranquia(f28);tr1.adicionaFranquia(f29); tr1.adicionaFranquia(f30);
 
-		Jogador j1 = new Jogador("LeBron James", "Estados Unidos", "Lakers", 15, 30, 15, 1.2, 1.0, 36, false, 39000000.0, "SF");Jogador j2 = new Jogador("Stephen Curry", "Estados Unidos", "Warriors", 6.5, 30.1, 13, 0.3, 1.6, 33, false, 43000000.0, "PG");Jogador j3 = new Jogador("Giannis Antetokounmpo", "Grécia", "Bucks", 28.1, 32.0, 5.9, 3.1, 2.1, 26, false, 39200000.0, "PF");Jogador j4 = new Jogador("Kevin Durant", "Estados Unidos", "Suns", 9.0, 27.1, 15.7, 1.1, 0.7, 33, false, 41000000.0, "SF");Jogador j5 = new Jogador("Kawhi Leonard", "Estados Unidos", "Clippers", 15.8, 23.3, 5.2, 3.2, 3, 30, false, 34400000.0, "SF");Jogador j6 = new Jogador("Luka Doncic", "Eslovênia", "Mavericks", 9.3, 28.6, 17.6, 0.8, 1.0, 22, false, 8740000.0, "PG");Jogador j7 = new Jogador("Joel Embiid", "Camarões", "Sixers", 16.5, 22.5, 3.5, 3.9, 2.0, 27, false, 31600000.0, "C");Jogador j8 = new Jogador("Bam Adebayo", "Estados Unidos", "Heat", 15, 10.8, 8.3, 3.7, 3, 26, false, 28200000.0, "C");
+		Jogador j1 = new Jogador("LeBron James", "Estados Unidos", "Lakers", 15, 30, 15, 1.2, 1.0, 36, false, 39000000.0, "SF");//MVP
+		Jogador j2 = new Jogador("Stephen Curry", "Estados Unidos", "Warriors", 6.5, 30.1, 13, 0.3, 1.6, 33, false, 43000000.0, "PG");//MVP
+		Jogador j3 = new Jogador("Giannis Antetokounmpo", "Grécia", "Bucks", 28.1, 32.0, 5.9, 3.1, 2.1, 26, false, 39200000.0, "PF");//DPOY
+		Jogador j4 = new Jogador("Kevin Durant", "Estados Unidos", "Suns", 9.0, 27.1, 15.7, 1.1, 0.7, 33, false, 41000000.0, "SF");//MVP
+		Jogador j5 = new Jogador("Kawhi Leonard", "Estados Unidos", "Clippers", 15.8, 23.3, 5.2, 3.2, 3, 30, false, 34400000.0, "SF");
+		Jogador j6 = new Jogador("Luka Doncic", "Eslovênia", "Mavericks", 9.3, 28.6, 17.6, 0.8, 1.0, 22, false, 8740000.0, "PG");//MVP
+		Jogador j7 = new Jogador("Joel Embiid", "Camarões", "Sixers", 16.5, 22.5, 3.5, 3.9, 2.0, 27, false, 31600000.0, "C");//DPOY
+		Jogador j8 = new Jogador("Bam Adebayo", "Estados Unidos", "Heat", 15, 10.8, 8.3, 3.7, 3, 26, false, 28200000.0, "C");//DPOY
 
 		f21.adicionaJogador(j1); f18.adicionaJogador(j2); f10.adicionaJogador(j3); f26.adicionaJogador(j4);f20.adicionaJogador(j5); f16.adicionaJogador(j6); f13.adicionaJogador(j7); f9.adicionaJogador(j8);
 
@@ -35,31 +42,22 @@ public class Main {
 		pfl1.recebeFranquias(tr1);
 		pfo1.recebeFranquias(tr1);
 
-		/*f21.pesquisaJogador("LeBron James");
-
-		System.out.println(f1.listaJogadores("Lakers", jogadores));
-
-		System.out.println(f1.listaJogadoresPosicao("Warriors", jogadores, "PG"));
+		f21.pesquisaJogador("LeBron James");
+		System.out.println(f1.listaJogadores("Sixers", jogadores));
+		System.out.println(f1.listaJogadoresPosicao("Mavericks", jogadores, "PG"));
 
 		p1.atualizarPremiacoes();
 		System.out.println("Lista mvp: " + p1.listaNomesMvp() );
-		System.out.println("Lista dpoy: " + p1.listaNomeDpoy());*/
+		System.out.println("Lista dpoy: " + p1.listaNomeDpoy());
 
+		/*
 		pfl1.leste();
 		pfo1.oeste();
-		fi1.realizarFinal();
+		fi1.realizarFinal();*/
 
-		/*Escrita escrita = new Escrita(tr1.getFranquias());
+		Escrita escrita = new Escrita(tr1.getFranquias());
 		String saida = "Saida.txt";
 		escrita.classificacao();
 		escrita.efetuaEscritaTempRegular(saida);
-
-		Leitor leitor = new Leitor();
-		ArrayList<Franquia> franquiasOesteClassificadas = tr1.getFranquiasOesteClassificadas();
-		ArrayList<Franquia> franquiasLesteClassificadas = tr1.getFranquiasLesteClassificadas();
-		leitor.recebeFranquias(franquiasOesteClassificadas, franquiasLesteClassificadas);
-
-		leitor.lerResultadosDosJogos("C:\\Users\\Usuario\\Desktop\\Java\\AV3\\Entrada.txt");*/
-
 	}
 }
