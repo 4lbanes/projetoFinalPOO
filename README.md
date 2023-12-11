@@ -1,3 +1,5 @@
+                                                                        SIMULAÇÃO DA NBA
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Esse projeto busca principalmente simular os playoffs da NBA com os princípios da Programação Orientada a Objetos, o projeto foi feito totalmente em Java.
 
 O código começa com a instanciação da classe "TemporadaRegular" que é um conjunto de franquias(times) tanto do oeste, quanto do leste:
